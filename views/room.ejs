@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOME</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js.map"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const ROOM_ID = "<%= roomId %>";
+    </script>
+    <style>
+      #roomid{
+        font-size: medium;
+        margin-top: 7px;
+        
+      }
+      #copybtn{
+        padding: 10px;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <script>
+        var person = prompt("Please enter your name");
+        localStorage.setItem("Uname",person );
+      </script> -->
+      
+    <div class="main">
+      <div class="main__left">
+        <div class="main__videos">
+         
+          <div id="video-grid"></div>
+          <span id="data" style="color: blanchedalmond; font-style:italic; display: flex; justify-content: center; font-size: large;">name</span>
+        
+      </div>
+
+        
+        <div class="main__controls">
+          <div class="main__controls_block">
+            <div
+              class="main__controls_button"
+              id="muteButton"
+              onclick="muteUnmute()"
+            >
+              <i class="fa fa-microphone"></i>
+              <span>Mute</span>
+            </div>
+            <div
+              class="main__controls_button"
+              id="playPauseVideo"
+              onclick="playStop()"
+            >
+              <i class="fa fa-video-camera"></i>
+              <span>Pause Video</span>
+            </div>
+          </div>
+
+          <div class="main__controls_block">
+            <div class="main__controls_button">
+              <i class="fa fa-shield"></i>
+              <span>Security</span>
+            </div>
+            <div class="main__controls_button">
+              <i class="fa fa-users"></i>
+              <span>Participants</span>
+            </div>
+            <div class="main__controls_button">
+              <i class="fa fa-comment"></i>
+              <span >Chat</span>
+              
+             
+            </div>
+          </div>
+
+          <div class="main__controls_block">
+            <div class="main__controls_button leaveMeeting" id="leave-meeting">
+              <i class="fa fa-times"></i>
+              <span class="">Leave Meeting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main__right">
+        <div class="main__header">
+          <h4>Chat</h4>
+          <!-- <p id="data">name</p> -->
+          <input type="text" id="roomid">
+          <a class="btn btn-info" id="copybtn" onclick="myFunction()" data-toggle="tooltip" data-placement="right" title="Link Copied">Copy text</a>
+
+          <script>
+            function myFunction() {
+              var copyText = document.getElementById("roomid");
+              
+                copyText.select();
+                copyText.setSelectionRange(0, 99999)
+              document.execCommand("copy");
+              alert("Copied the text: " + copyText.value);
+            }
+            </script>
+
+          
+          <script>
+            document.getElementById("data").innerHTML=localStorage.getItem("Uname");
+            var str1="http://localhost:3030/";
+            var res = str1.concat(ROOM_ID);
+            document.getElementById("roomid").value=res;
+           
+          </script>
+        </div>
+        <div class="main__chat__window" id="main__chat__window">
+          <ul class="messages" id="all_messages"></ul>
+        </div>
+        <div class="main__message_container">
+          <input
+            type="text"
+            id="chat_message"
+            placeholder="Type message here.."
+          />
+        </div>
+      </div>
+    </div>
+   
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
